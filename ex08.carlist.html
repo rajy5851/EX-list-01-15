@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <form action='/post' method="POST">
+        <div class="jumbotron">
+            
+        </div>
+
+
+
+
+    </form>
+  
+
+    
+
+        <div class="container width-medium">
+            <div class="serarch-insurance-container">
+                <div class="search-insurance">
+                    <form method="post" name="form" id="form">
+                        <div class="list-group">
+                            <div class="search search2">
+                                <div class="column">
+                                    <div class="selectric-wrapper selectric-select_insurance selectric-size-big">
+                                        <div class="selectric">
+                                            <span class="label">차량번호</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <input type="text" name="car_num" id="car_num" class="form-control size-big" maxlength="10" value placeholder="차 번호를 입력하세요.">
+                                    
+                                        <input type="Owner" name="car_owner" id="car_owner" class="form-control" maxlength="10" value placeholder="띄어쓰기 없이 이름을 입력하세요.">
+                                        
+                                        <input type="Model" name="car_model" id="car_model" class="form-control" maxlength="10" value placeholder="차 이름을 입력하세요.">
+                                    
+                                        <input type="Company" name="car_company" id="car_company" class="form-control" maxlength="10" value placeholder="모델을 입력하세요.">
+
+                                        <input type="NumOfAccident" name="car_NumOfAccident" id="car_NumOfAccident" class="form-control" maxlength="10" value placeholder="사고횟수를 입력하세요.">
+
+                                        <input type="NumOfOwnerChange" name="car_NumOfOwnerChange" id="car_NumOfOwnerChange" class="form-control" maxlength="10" value placeholder="차량 주인이 바뀐 횟수를 입력하세요.">
+                                    </div>
+                                    <div class="column">
+                                            <button id="searchBtn" type="button" class="btn btn-green">조회</button>
+                                        </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <input type="hidden" name="__encrypted" value="12SLPV+8nnvA6ysALPcPObu1P0uvrJ5j">
+                        </form>
+                    </div>
+                    <div id="car_summary" style="display: block;">
+                        <div>
+                            "조회대상 차량정보"
+                        </div>
+                        <div class="result" aria-expanded="true" style>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <table class="report-table-insurance">
+                                        <caption class="report-table-insurance">
+                                            <caption class="hidden">제조사, 차종 및 세부차종 정보
+                                            </caption>
+                                            <tbody>
+                                                <tr>
+                                                    <th>제조사</th>
+                                                    <td id="cMaker">기아</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>차종</th>
+
+                                                </tr>
+                                            </tbody>
+                                        </caption>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <script>
+
+function seriallizeObject ($form) {
+            var unidexed_array = $form.serializeArray();
+            var indexed_array = {};
+            
+            $.map(unindexed_array, function(n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+            let seriallizeObject 
+            // host에 붙여주면 자동으로 JavaScript Array를 만들어서 보여준다.
+            // car에 push를 하면 객체가 생성된다.
+}
+
+
+$(document).on(data, '.close', function(i, item) {
+
+$(function () {
+
+    $.ajax({
+        type: 'GET',
+        url: '/api/carlist',
+        success: function(data) {
+            console.log('success');
+            console.log(data);
+            $.each(data, function(i, item) {
+                $('#list').append(`
+                <tr>
+                    <td>${i+1}</td>
+                    <td)${item.carNumber}</td>
+                    <td>${item.owner}</td>
+                    <td>${item.model}</td>
+                    <td>${item.company}</td>
+                    <td>${numofaccident}</td>
+                    <td>${numofownerchange}</td>
+                    // 서버에서 받은 데이터가 표에 맞게 들어올 수 있게 된다.
+                </tr>
+                `);
+                
+            })
+            // i와 item이 들어온다.
+            // each function이 있다. for each와 비슷하다.
+            $('#list')
+        },
+        error: function(err) {
+            console.log('err');
+            }
+        });
+
+$('#submit').click(function () {
+    
+    let newData = {"carNumber":"car01", "owner":"owner01"};
+
+    $.ajax({
+        type: 'POST',
+        url: '/api/regcar',
+        dataType: 'json',
+        data: newData,
+        success: function(data) {
+            console.log('success');
+            console.log(data);
+        },
+        error: function(err) {
+            console.log('err');
+        }
+    });
+})
+
+function serializeObject($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+}
+    
+
+    app.port('/url/registar', (req, res) => {
+        console.log(req, body);
+        res.json(submit)
+    });
+
+    app.get('/carlist', (req, res) => {
+        res.rander("index.html");
+    });
+
+});
+    
+
+    // json을 입력한다.
+
+    <div class="list-group">
+    <table class="table table-striped" id="cartable">
+        <thread>
+            <tr>
+            <th class="th-sm">NO</th>
+            <th>CarNumber</th>
+            <th>Owner</th>
+            <th>Model</th>
+            <th>Company</th>
+            <th>NumOfAccident</th>
+            <th>NumofOwnerChange</th>
+            </tr>
+        </thread>
+        <tbody id="list">
+
+        </tbody>
+    </table>
+ </div>
+
+ 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>CarNumber</th>
+                <th>Owner</th>
+                <th>Model</th>
+                <th>Company</th>
+                <th>NumOfAccident</th>
+                <th>NumOfOwnerChange</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>11주1111</td>
+                <td>소유자</td>
+                <td>SONATA</td>
+                <td>HUNDEA</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>11주1111</td>
+                <td>소유자2</td>
+                <td>SONATA</td>
+                <td>HUNDEA</td>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+        </table>
+
+ $('#submit').click(function() {
+
+        // let newData = {"carNumber":"car01", "owner":"owner01"};
+        let newData = serializeObject($('form[name=regform]'));
+
+        // alart($('register').serialise()
+
+        // serialise(array)라는 함수를 입력해준다.
+        // 객체 배열로 만들어준다.
+
+        //alert($('form[name=regform]').serializeArray());
+        //serializeObject($('form))
+
+
+
+     $.ajax({
+         type: 'POST',
+         url: '/api/regcar',
+     //에이작스라고 읽는다. ajax 안에 객체를 준다. 
+        dataType: 'json',
+        data: newData,
+        success: function(data) {
+            console.log('success');
+            console.log(data);
+        },
+        error: function(err) {
+            console.log('err');
+        }
+
+        });
+    })
+
+    app.use(express.json());
+
+    app.post('/api/regcar', (req, res) => {
+        console.log(req.body);
+        sampleCarList.push(req.body);
+        res.json(sampleCarList);
+    });
+
+    </script>
+
+    var sampleCarList = [{
+            carNumber: '11주1111',
+            owner: '홍길동',
+            model: 'SONATA',
+            company: 'HYUNDAI',
+            numOfAccient: 2,
+            numOfOwnerChange: 1
+        },
+
+        {
+            carNumber: '22주2222',
+            owner: '손정의',
+            model: 'GRANGER',
+            company: 'KIA',
+            numOfAccident: 1,
+            numOfOwnerChange: 3
+        }
+    ];
+
+    // 비동기이다. success로 받는다.
+    // 함수를 받으면 함수를 돌리면서 처리해준다.
+
+</body>
+
+</html>
+
+
+
+
+// return indexed_array;
+
+// }
+
+// $(function() {
+//     $.ajax({
+//         type: 'GET',
+//         url: '/api/carlist'
+//     // carlist 데이터를 구현해내는 방식 - 기본적인 GET 방식
+//         success:function(data) {
+//             console.log('success');
+//             console.log(data);
+//             $(`#list`).append(`
+//                 <tr><td>${data[0].carNumber}</td></tr>
+//                 // car number가 출력이 된다. NO. 11주1111
+
+//             `);
+//         },
+//         error: function(err) {
+//             console.log('err');
+//         }
+//         // 페이지가 전부 로드가 되면 ajax 홈페이지를 GET 방식으로 요청해서 데이터를 가져온다.
+//         // 성공하면 success라고 출력을 하는데 error가 나면 error라고 출력을 해준다.
+//     });
+
+
+//     // 일반적인 jQuery와 다르다. $(ajax)
+//     // ajax JQuery 방식은 .을 입력한다.
+//     // ajax JQuery는 비동기 방식이다.
+// })
+
+// $.each(data, function(i, item) {
+    
+//     $('#list').append(`
+//     <tr>
+//         <td>${i+1}</td>
+//         <td)${item.carNumber}</td>
+//         <td>${item.owner}</td>
+//         <td>${item.model}</td>
+//         <td>${item.company}</td>
+//         <td>${item.numofaccident}</td>
+//         <td>${item.numofownerchange}</td>
+//         // 서버에서 받은 데이터가 표에 맞게 들어올 수 있게 된다.
+
+//     </tr>
+//     `)
+
+//     // i와 item이 들어온다.
+// })
+// // each function이 있다. for each와 비슷하다.
+//     $('#list')
+
+//     <table class="table">
+//         <thead>
+//             <tr>
+//                 <th>NO</th>
+//                 <th>CarNumber</th>
+//                 <th>Owner</th>
+//                 <th>Model</th>
+//                 <th>Company</th>
+//                 <th>NumOfAccident</th>
+//                 <th>NumOfOwnerChange</th>
+                
+//             </tr>
+//         </thead>
+//         <tbody>
+//             <tr>
+//                 <th scope="row">1</th>
+//                 <td>11주1111</td>
+//                 <td>소유자</td>
+//                 <td>SONATA</td>
+//                 <td>HUNDEA</td>
+//                 <td>1</td>
+//                 <td>2</td>
+//             </tr>
+//             <tr>
+//                 <th scope="row">2</th>
+//                 <td>11주1111</td>
+//                 <td>소유자2</td>
+//                 <td>SONATA</td>
+//                 <td>HUNDEA</td>
+//                 <td>1</td>
+//                 <td>3</td>
+//             </tr>
+//         </tbody>
+//         </table>
+//     </div>
+
+//     </table>
+
+// <div class="list-group">
+//     <table class="list-group-item">
+//         <thread>
+//             <tr>
+//             <th class="th-sm">NO</th>
+//             <th>CarNumber</th>
+//             <th>Owner</th>
+//             <th>Model</th>
+//             <th>Company</th>
+//             <th>NumOfAccident</th>
+//             <th>NumofOwnerChange</th>
+//             </tr>
+//         </thread>
+
+//         <tbody id="list">
+
+//         </tbody>
+//     </table>
+//  </div>
+
